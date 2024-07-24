@@ -4,9 +4,14 @@ import Navbar from './Navbar';
 
 import Products from '../Data/Proudcts';
 import { useDispatch } from 'react-redux';
+import { addToCart } from '../Redux/cart/cartSlice';
+ 
 
 export default function ShopPage() {
-  console.log(Products);
+const dispatch=useDispatch()
+const handleAddToCart=(product)=>{
+  dispatch(addToCart(product))
+}  
 
   return (
     <div>
@@ -30,7 +35,7 @@ export default function ShopPage() {
             <p className="text-sm text-red-500 font-bold mb-2">{product.discountPercentage}% OFF</p>
             <p className="text-lg font-medium text-gray-700 mb-4">Price: ${product.price.toFixed(2)}</p>
             <button className="mt-auto bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 transition-colors" 
-              onClick={}
+              onClick={() => handleAddToCart(product)}
             >
               Add to Cart
             </button>
